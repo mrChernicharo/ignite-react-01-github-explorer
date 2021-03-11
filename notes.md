@@ -205,11 +205,26 @@ E aí vamos lá no package.json criar alguns scripts...que são nada além de at
 
 Obs: repare que em "build" usamos webpack sem o "serve" pois não queremos hot-reload
 
-#
-
 ===================================================
 
 #
+
+Nesse ponto nosso app ainda não entende arquivos .css, e se importarmos um desses dentro de um arquivo .js ou .jsx nosso, teremos ERRO do webpack
+
+pra resolver precisamos de mais duas dependências:
+
+# yarn add style-loader css-loader
+
+pra usar, criamos uma nova rule dentro do webpack.config, com uma regex mirando na extensão .css e usando os dois loaders instalados dentro de um array
+
+rules: [
+{...},
+{
+test: /\.css$/,
+exclude: /node_modules/,
+use: ["style-loader", "css-loader"],
+},
+],
 
 ===================================================
 

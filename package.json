@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "webpack serve",
+    "build": "cross-env NODE_ENV=production webpack"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.12.13",
     "cross-env": "^7.0.3",
+    "css-loader": "^5.1.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "style-loader": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.10",
