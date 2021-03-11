@@ -60,9 +60,43 @@ o babel-loader é a integração entre o babel com os demais arquivos q nossa ap
 
 Assim, tudo é processado pelo webpack, que entrega um bundle minificado, muito mais esquisito que o bundle do babel puro, isso pq o webpack junta o código de tudo que é arquivo dentro do mesmo código
 
-#
+crie o bundle com:
 
-#
+# yarn webpack
+
+===================================================
+
+# ESTRUTURA REACTJS
+
+  <body>
+    <div id="root"></div>
+    <script src="../dist/bundle.js"></script>
+  </body>
+
+////
+
+import React from "react";
+import { render } from "react-dom";
+import { App } from "./App";
+
+render(<h1>Test</h1>, document.getElementById("root"));
+
+-nas versões antigas do react era preciso importar React em todos os arquivos....sem esse import, o webpack nem roda!
+
+pra resolver podemos passar uma configuração pro @babel-loader assim:
+
+module.exports = {
+presets: [
+"@babel/preset-env",
+["@babel/preset-react", { runtime: "automatic" }],
+],
+};
+
+-Esse { runtime: automatic } vai então permitir que o webpack entenda o react mais moderno, sem os imports obrigatórios
+
+-No webpack vc ainda tem a opção de usar a propriedade mode que define "development" ou "production"
+
+Em development o bundle é feito mais rapidamente, pois há menos checagens e otimizações. Indo no bundle vc vê até que o código fica maiorzão, enquanto que em "production" o código é todo minificado, em uma só linha
 
 #
 
