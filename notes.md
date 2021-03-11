@@ -98,7 +98,30 @@ presets: [
 
 Em development o bundle é feito mais rapidamente, pois há menos checagens e otimizações. Indo no bundle vc vê até que o código fica maiorzão, enquanto que em "production" o código é todo minificado, em uma só linha
 
-#
+===================================================
+
+# yarn add html-webpack-plugin -D
+
+essa lib nos permitirá melhorar a referência ao arquivo bundle.js na tag script do index.html
+
+basta acresentar a propriedade plugins no webpack.config e passar um array.
+
+Nesse array instanciamos um novo objeto HtmlWebpackPlugin, disponibilizado pela lib que acabamos de instalar, e por parâmetro, passamos o caminho pro arquivo html de entrada (atualmente na pasta public) usando a lib path do node
+
+plugins: [
+new HtmlWebpackPlugin({
+template: path.resolve(__dirname, "public", "index.html"),
+}),
+],
+
+Com isso podemos então referenciar nosso script de bundle omitindo o caminho dele no nosso projeto:
+
+  <body>
+    <div id="root"></div>
+    <script src="bundle.js"></script>
+  </body>
+
+rodando então o yarn webpack, teremos um arquivo index.html sendo criado na pasta /dist e se abrir o arquivo, veremos que a aplicação funciona como esperado
 
 #
 
