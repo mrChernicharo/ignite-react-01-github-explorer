@@ -228,7 +228,21 @@ use: ["style-loader", "css-loader"],
 
 ===================================================
 
-#
+# SASS
+
+# yarn add node-sass -D
+
+# yarn add sass-loader
+
+troque as extensões de .css pra .scss e a regex dentro da rule do webpack:
+
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+
+reinicie o servidor e voilá!
 
 ===================================================
 
