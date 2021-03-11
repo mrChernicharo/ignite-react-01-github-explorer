@@ -8,6 +8,8 @@
 
 ===============================================================================================
 
+# BABEL
+
 # yarn add @babel/core @babel/cli @babel/preset-env -D
 
 - cria babel.config.js
@@ -24,13 +26,39 @@
 
 ...e agora entende! É só adicionar esse novo preset dentro do array de presets do arquivo babel.config
 
+- E vc pode mudar a extensão do arquivo de .js para .jsx. Isso não muda nada na realidade, serve apenas pra mudar o ícone do arquivo e "informar" que nele estamos usando html dentro do js...
+
 ===============================================================================================
 
-#
+# WEBPACK
 
-#
+- O webpack nos permite importar arquivos de diversas extensões para extensões compreendidas pelo browser
 
-#
+# yarn add webpack webpack-cli -D
+
+- criamos o arquivo webpack.config.js. Esse é o cara responsável por "adaptar" nossa aplicação para trabalhar com tipos diferentes de arquivos
+
+-entry: ponto de entrada da aplicação
+
+-output: arquivo de saída da aplicação
+\*\*\* aqui usamos a lib path:
+o \_\_dirname indica o diretório raíz, onde se encontra o arquivo .config
+na lib path construimos caminhos usando a função resolve(). Isso previne problemas com barras invertidas por exemplo, se o sistema tiver que rodar num windows
+
+-resolve: recebe as extensões. Extensões declaradas aqui não precisam mais ser indicadas na hora de fazer imports
+
+-module: recebe um array de rules
+\*\*test: recebe regEx que combina com as extensões desejadas
+
+\*\*exculde: como os arquivos de bibliotecas externas (na node_modules) já vêm com seus bundles prontos, não vamos querer passar esses arquivos pelo nosso loader
+
+\*\*use: aqui vc especifica o loader que vai usar...
+
+# yarn add babel-loader -D
+
+o babel-loader é a integração entre o babel com os demais arquivos q nossa aplicação precisa ter ou importar.
+
+Assim, tudo é processado pelo webpack, que entrega um bundle minificado, muito mais esquisito que o bundle do babel puro, isso pq o webpack junta o código de tudo que é arquivo dentro do mesmo código
 
 #
 
