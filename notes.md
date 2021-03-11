@@ -106,7 +106,9 @@ essa lib nos permitirá melhorar a referência ao arquivo bundle.js na tag scrip
 
 basta acresentar a propriedade plugins no webpack.config e passar um array.
 
-Nesse array instanciamos um novo objeto HtmlWebpackPlugin, disponibilizado pela lib que acabamos de instalar, e por parâmetro, passamos o caminho pro arquivo html de entrada (atualmente na pasta public) usando a lib path do node
+Nesse array instanciamos um novo objeto HtmlWebpackPlugin, disponibilizado pela lib que acabamos de instalar.
+
+Dentro dele criamos um objeto com a prop "template" que receberá o caminho pro arquivo html de entrada (atualmente na pasta public) usando a lib path do node
 
 plugins: [
 new HtmlWebpackPlugin({
@@ -123,10 +125,51 @@ Com isso podemos então referenciar nosso script de bundle omitindo o caminho de
 
 rodando então o yarn webpack, teremos um arquivo index.html sendo criado na pasta /dist e se abrir o arquivo, veremos que a aplicação funciona como esperado
 
-#
+===================================================
+
+# WEBPACK DEV-SERVER
+
+# yarn add webpack-dev-server -D
+
+com o dev-server o bundle será refeito automaticamente sem que a gente tenha que criar o bundle manualmente toda vez que alterarmos o código
+
+Lib instalada, vamos no webpack.config criar a nova propriedade devServer
+
+    devServer: {
+    	contentBase: path.resolve(__dirname, 'public')
+    },
+
+e aí podemos rodar
+
+# yarn webpack serve
+
+e vemos que o projeto está rodando na porta 8080
+
+e agora com live reload!
+
+ou seja, sempre que a gente salvar, um novo bundle será gerado, bem rapidinho!
+
+===================================================
+
+# SOURCE MAPS
+
+servem para visualizar o código original, mesmo quando o código já foi todo zoado pelo bundle.
+
+Isso facilita o debug pois vc consegue ver o seu código no console
+
+para fazer basta criar a prop "devtool" lá no webpack.config
+
+devtool: 'eval-source-map',
+
+aqui estamos usando o eval-source-map, que é indicado para modo de desenvolvimento.
+Há outras ferramentas de source map disponíveis...mais pra frente veremos outras
 
 #
 
+===================================================
+
 #
+
+===================================================
 
 #
