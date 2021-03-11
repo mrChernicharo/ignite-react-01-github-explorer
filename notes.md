@@ -168,8 +168,115 @@ Há outras ferramentas de source map disponíveis...mais pra frente veremos outr
 
 ===================================================
 
+# AMBIENTE DEV/PROD
+
+no webpack.config vamos usar a variável NODE_ENV pra detectar se estamos em modo dev ou prod
+
+const isDevelopment = process.env.NODE_ENV !== "production";
+
+module.exports = {
+mode: isDevelopment ? "development" : "production",
+devtool: isDevelopment ? "eval-source-map" : "source-map",
+...
+
+caso estejamos em produção, nosso source map será outro, o source-map e não mais o eval-source-map.
+
+...Diego disse que o source-map puro é mais lento porém dá mais detalhes
+
+E pra settar a variável ambiente NODE_ENV podemos simplesmente rodar
+
+NODE_ENV=<ambiente> <comando>
+
+# NODE_ENV=production yarn webpack serve
+
+porém isso só funciona em linux e macOS. Pra driblar essa limitação, bora instalar outra lib:
+
+# yarn add cross-env
+
+Essa lib cross-env serve pra gente definir variáveis de ambiente que vão funcionar independente do OS
+
+E aí vamos lá no package.json criar alguns scripts...que são nada além de atalhos para comandos que estão ficando desconfortáveis de digitar na linha de comando
+
+    "scripts": {
+    "dev": "webpack serve",
+    "build": "cross-env NODE_ENV=production webpack"
+
+},
+
+Obs: repare que em "build" usamos webpack sem o "serve" pois não queremos hot-reload
+
 #
 
 ===================================================
 
 #
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
+
+#
+
+===================================================
