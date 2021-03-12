@@ -1,6 +1,6 @@
 import React from "react";
 
-const RepositoryItem = (props) => {
+export function RepositoryItem(props) {
   return (
     <li>
       <h3>{props.repository?.name}</h3>
@@ -9,6 +9,4 @@ const RepositoryItem = (props) => {
       <a href={props.repository?.link}>Acessar Repositório</a>
     </li>
   );
-};
-
-export default RepositoryItem;
+}

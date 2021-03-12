@@ -246,7 +246,58 @@ reinicie o servidor e voilá!
 
 ===================================================
 
-#
+# FAST REFRESH
+
+# yarn add -D @pmmmwh/react-refresh-webpack-plugin react-refresh
+
+e aí no webpack...
+
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"); // 1.
+
+devServer: {
+contentBase: path.resolve(\_\_dirname, "public"),
+hot: true, // 2.
+},
+
+plugins: [
+isDevelopment && new ReactRefreshWebpackPlugin(), //.3
+new HtmlWebpackPlugin({
+template: path.resolve(__dirname, "public", "index.html"),
+}),
+].filter(Boolean),
+
+module: {
+rules: [
+{
+test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: {                               // 4.
+          loader: "babel-loader",
+          options: {
+            plugins: [
+              isDevelopment && require.resolve("react-refresh/babel"),
+            ].filter(Boolean),
+          },
+        },
+      },
+      {
+        test: /\.scss$/,
+exclude: /node_modules/,
+use: ["style-loader", "css-loader", "sass-loader"],
+},
+],
+},
+
+**1** import da lib
+
+**2** no devServer, ative a prop "hot"
+
+**3** se em desenvolvimento, instancie o plugin fastRefresh. olha o truque do Array.filter(Boolean)!
+
+**4** na prop "use" da rule vamos passar um objeto, especificamos o loader e options, em options na prop plugins vamos usar aquele truque do Array.filter pra não deixar um "false" no array
+
+...beeleeeza mas no fim o fast refresh NÃO FUNFOOOOU...
+Então que se foda e vamu em frente
 
 ===================================================
 

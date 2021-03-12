@@ -1,5 +1,5 @@
 import React from "react";
-import RepositoryItem from "./RepositoryItem";
+import { RepositoryItem } from "./RepositoryItem";
 
 const repository = {
   name: "unform",
@@ -7,25 +7,18 @@ const repository = {
   description: "Forms in React",
 };
 
-const RepositoryList = () => {
+export function RepositoryList() {
   return (
     <section>
       <h1>Lista de Repositórios</h1>
+      <p>my love</p>
+      <p>my love</p>
+      <p>my love</p>
 
       <ul>
-        <li>
-          <strong></strong>
-          <p>Lorem ipsum dolor sit.</p>
-
-          <a href="">Acessar Repositório</a>
-        </li>
-
-        <RepositoryItem repository={repository} />
         <RepositoryItem repository={repository} />
         <RepositoryItem repository={repository} />
       </ul>
     </section>
   );
-};
-
-export default RepositoryList;
+}
